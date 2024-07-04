@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto a voz | LG</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #2d2d2d;    
+            color: #fff; /* Cambiar el color del texto dentro del input */
+
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .output-container {
+            margin-top: 20px;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        /* Personalización del spinner */
+        .spinner-border-custom {
+            color: #007bff; /* Color azul Bootstrap */
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4 mb-4">Texto a voz - LG</h2>
+        <div class="form-container">
+            <form id="convertForm" action="/" method="POST" enctype="multipart/form-data" class="mb-4">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file" accept=".txt" required>
+                        <label class="custom-file-label" for="file">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" id="submitButton">
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            Convertir a Audio
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        {% if success_message %}
+        <div class="output-container">
+            <div class="alert alert-success">
+                <strong>Éxito:</strong> {{ success_message }}
+            </div>
+            {% if audio_url %}
+            <div class="mt-4 mb-4">
+                <audio controls>
+                    <source src="{{ audio_url }}" type="audio/wav">
+                    Tu navegador no soporta audio HTML5.
+                </audio>
+            </div>
+            <div class="mt-4 mb-4">
+                <a class="btn btn-primary mt-2" href="{{ audio_url }}" download>Descargar Audio</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if error_message %}
+        <div class="output-container">
+            <div class="alert alert-danger">
+                <strong>Error:</strong> {{ error_message }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script adicional para mostrar el spinner -->
+    <script>
+        document.getElementById('convertForm').addEventListener('submit', function() {
+            document.getElementById('submitButton').querySelector('.spinner-border').classList.remove('d-none');
+            document.getElementById('submitButton').disabled = true;
+        });
+    </script>
+</body>
+</html>
