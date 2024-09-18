@@ -1,9 +1,0 @@
-1
-00:00:00,200 --> 00:00:04,031
-Horno LG 
-Cómo insertar los rieles telescópicos
-
-2
-00:00:08,174 --> 00:00:14,134
-Tanto las guías como los rieles telescópicos tienen una posición correcta de montaje, 
-izquierda y derecha

@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = tempfile.gettempdir()  # Usar una carpeta temporal para almacenar archivos
 app.config['ALLOWED_EXTENSIONS'] = {'txt'}
 
-YOUR_XI_API_KEY = "sk_b369d45e1d8dd25f8267d49ef7b602960de7bc9e36a6e65e"
+YOUR_XI_API_KEY = "sk_1c7266f6dd0681924de371b9535adce989b87488436dd446"
 VOICE_ID = "OYIb9zSloh1QDbhBhVWt"  # Cambiar según tu voz de Eleven Labs
 
 # Función para convertir el tiempo de formato SRT a segundos
